@@ -71,7 +71,7 @@ def get(request):
     return request.json_body
 
 @view_config(route_name='home', request_method=['GET'], renderer='json')
-def get(request):
+def home(request):
     return {'message': 'OK'}
 
 
