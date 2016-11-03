@@ -1,0 +1,13 @@
+{
+	"name": "Dummy Korben",
+	"repository": "https://github.com/uktrade/data-hub-dummy-korben",
+	"formation": {
+		"web": {
+			"quantity": 1,
+			"size": "Free"
+		}
+	},
+	"buildpacks": [{
+		"url": "heroku/python"
+	}]
+}
