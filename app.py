@@ -70,11 +70,16 @@ def get(request):
     validate_tablename(request)
     return request.json_body
 
+@view_config(route_name='home', request_method=['GET'], renderer='json')
+def get(request):
+    return {'message': 'OK'}
+
 
 def get_app(settings=None):
     if settings is None:
         settings = {}
     app_cfg = Configurator(settings=settings)
+    app_cfg.add_route('home', '/')
     app_cfg.add_route('create', '/create/{django_tablename}')
     app_cfg.add_route('update', '/update/{django_tablename}')
     app_cfg.add_route('get', '/get/{django_tablename}/{ident}')
@@ -84,5 +89,6 @@ def get_app(settings=None):
 
 if __name__ == '__main__':
     LOGGER.info('Starting dummy korben bau')
-    server = make_server('0.0.0.0', 8080, get_app())
+    port = int(os.environ.get("PORT", 5000))
+    server = make_server('0.0.0.0', port, get_app())
     server.serve_forever()
