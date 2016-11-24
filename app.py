@@ -75,6 +75,11 @@ def home(request):
     return {'message': 'OK'}
 
 
+@view_config(route_name='validate-credentials', request_method=['POST'], renderer='json')
+def validate_credentials(request):
+    return True
+
+
 def get_app(settings=None):
     if settings is None:
         settings = {}
@@ -83,6 +88,7 @@ def get_app(settings=None):
     app_cfg.add_route('create', '/create/{django_tablename}/')
     app_cfg.add_route('update', '/update/{django_tablename}/')
     app_cfg.add_route('get', '/get/{django_tablename}/{ident}/')
+    app_cfg.add_route('validate-credentials', '/auth/validate-credentials/')
     app_cfg.scan()
     return app_cfg.make_wsgi_app()
 
