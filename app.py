@@ -77,7 +77,7 @@ def home(request):
 
 @view_config(route_name='validate-credentials', request_method=['POST'], renderer='json')
 def validate_credentials(request):
-    return True
+    return False
 
 
 def get_app(settings=None):
