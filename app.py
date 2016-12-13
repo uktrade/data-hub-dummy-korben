@@ -79,12 +79,17 @@ def home(request):
 def validate_credentials(request):
     return True
 
+@view_config(route_name='ping', request_method=['get'], renderer='json')
+def ping(request):
+    return True
+
 
 def get_app(settings=None):
     if settings is None:
         settings = {}
     app_cfg = Configurator(settings=settings)
     app_cfg.add_route('home', '/')
+    app_cfg.add_route('ping', '/ping.xml')
     app_cfg.add_route('create', '/create/{django_tablename}/')
     app_cfg.add_route('update', '/update/{django_tablename}/')
     app_cfg.add_route('get', '/get/{django_tablename}/{ident}/')
